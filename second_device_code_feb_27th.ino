@@ -33,12 +33,9 @@ int TRIGGER=2;
 int CLK=9;
 int START=7;
 
-//J26 changed LED Pin per schematic
-//int ledPin = 3;
+
 int ledPin = 18;
 
-//J26 disabling this pin, unused 
-//int ONpin = 5;
 
 // Sahiti added code : to add another LED
 int liq_level = 0;
@@ -47,23 +44,7 @@ int liq_level = 0;
 //int water_sensor = 41;
 int water_sensor = 40;
 
-/*
-//change the relay_pins according to mega
-int relay_pin_1 = 22;
-int relay_pin_2 = 23;
-int relay_pin_3 = 24;
-int relay_pin_4 = 25;
-//regular and reverse second vacuum pins
-int relay_pin_5 = 26;
-int relay_pin_6 = 27;
-int relay_pin_7 = 28;
-int relay_pin_8 = 29;
-// regular and reverse fourth vacuum pins
-int relay_pin_9 = 30;
-int relay_pin_10 = 31;
-int relay_pin_11 = 32;
-int relay_pin_12 = 33;
-*/
+
 
 //J26 defining new inputs per the driver schematic
 int  IN1 =  3;
@@ -222,20 +203,7 @@ void readSpectrometer(){
 
 
 void resetallvaccum(){
-/* J26
-  digitalWrite(relay_pin_1, HIGH);
-  digitalWrite(relay_pin_2, HIGH);
-  digitalWrite(relay_pin_3, HIGH);
-  digitalWrite(relay_pin_4, HIGH);
-  digitalWrite(relay_pin_5, HIGH);
-  digitalWrite(relay_pin_6, HIGH);
-  digitalWrite(relay_pin_7, HIGH);
-  digitalWrite(relay_pin_8, HIGH);
-  digitalWrite(relay_pin_9, HIGH);
-  digitalWrite(relay_pin_10, HIGH);
-  digitalWrite(relay_pin_11, HIGH);
-  digitalWrite(relay_pin_12, HIGH);
-*/
+
   digitalWrite(IN1,LOW);
   digitalWrite(IN2,LOW);
   digitalWrite(IN3,LOW);
@@ -443,43 +411,21 @@ void setup() {
   pinMode(A0, INPUT);
   pinMode(ledPin, INPUT);
 
-  //J26 - NOT SURE WHAT IS ONpin
-  //pinMode(ONpin, INPUT);
-  // Sahiti added code : to add another LED
-  //pinMode(UVPin, INPUT);
+
   
   
   digitalWrite(CLK, HIGH);
   digitalWrite(START, LOW);
   rtc.begin();
   
-  //J26 commenting until we figure out what are these pins
-  /*
-  analogWrite(ONpin, 10);
-  analogWrite(ledPin, 6);
-*/
+
    // analogWrite(ledPin, 6);
   digitalWrite(ledPin, HIGH);
-  // Sahiti added code : to add another LED
-  //analogWrite(UVPin, 6);
+
   
   // Relay code
  resetallvaccum();
 
-/* J26
-  pinMode(relay_pin_1, OUTPUT);
-  pinMode(relay_pin_2, OUTPUT);
-  pinMode(relay_pin_3, OUTPUT);
-  pinMode(relay_pin_4, OUTPUT);
-  pinMode(relay_pin_5, OUTPUT);
-  pinMode(relay_pin_6, OUTPUT);
-  pinMode(relay_pin_7, OUTPUT);
-  pinMode(relay_pin_8, OUTPUT);
-  pinMode(relay_pin_9, OUTPUT);
-  pinMode(relay_pin_10, OUTPUT);
-  pinMode(relay_pin_11, OUTPUT);
-  pinMode(relay_pin_12, OUTPUT);
-*/
 
   pinMode(IN1, OUTPUT);   
   pinMode(IN2 , OUTPUT);   
@@ -491,9 +437,7 @@ void setup() {
   pinMode(IN8 , OUTPUT); 
   
 
-  //J26 pinMode(LED_BUILTIN, OUTPUT);  
-  //mySerial.begin(9600);
-  //Serial.begin(115200);
+
   Wire.begin();
   //sensors.begin();
   rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
@@ -524,11 +468,7 @@ stop=true;
     
     int run_no = 0;
     
-    /* J26 temperature won't work with this module, suppressing code
-    //find temperature usiing clock module
-    Serial.println(rtc.getTemperature());
-    float temp = rtc.getTemperature();
-    */
+
     Serial.println("in loop");   
     
     
@@ -536,7 +476,7 @@ stop=true;
     
 
     
-    // starts system loop at 10 am everyday
+    // starts system loop at chosen time everyday
     //if( time.hour()==10 && time.minute()==30){
     //if( time1.hour()==12 && time1.minute()==30){
       
@@ -544,7 +484,7 @@ stop=true;
       //the run number increments every time the loop starts
       run_no = run_no + 1;
 
-      //if it is the nth(2nd) run (2nd days run), don't discard the sample back into the soil
+      //if it is the nth(2nd) run (2nd days run), don't discard the sample back into the soil (can change n according to what you would prefer)
       
         myFile = SD.open("y.txt", FILE_WRITE);
         
@@ -632,9 +572,7 @@ stop=true;
         CalibrateLED();
         // if temperature curve comes, put in the correlation metrics according to measured temperature
         delay(28800000);
-        //delay(14400000);
-        //delay(1800000);
-        //delay(5000);
+
         //takes the spectrometer reading and saves it in the sd card file
         Capture();
         myFile.flush();
