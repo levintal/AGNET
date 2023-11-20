@@ -2,7 +2,10 @@
 // By Sahiti Bulusu, Basis Independent Fremont
 // Basic troubleshooting mechanisms of this code: the suction times per vacuum can vary if the tube length, arch of the tube, or the inner diameter of the tube changes, so be sure to calibrate the system once prior to allowing it to run automated
 // More information about the low-cost spectrophotometer, it's code and building instructions can be found here --> https://www.sciencedirect.com/science/article/pii/S246806722030016X
-//
+// The current sampling frequency of this code is once a day. This can be changed in 2 ways: 
+//       1. You can change the run_no variable to the amount of runs you would like, and that will cause it to go into a loop for that many runs from the second it is connected to power
+//       2. You can uncomment the loops that control the device according to the RTC time, and have a set time for the device to run. This would allow you to control the exact times you want the device to run as well. This can be paired with the first option if you would like the runs to start at a certain time and continue looping for a certain number of runs ever since the first time condition was met.
+
 
 
 
