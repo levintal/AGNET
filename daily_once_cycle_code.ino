@@ -1,4 +1,13 @@
-  #include <math.h>
+// This is the code to collect water and get the spectrophotometer reading as a part of an open-source, low-cost system for continuous nitrate monitoring in soil and open water
+// By Sahiti Bulusu, Basis Independent Fremont
+// Basic troubleshooting mechanisms of this code: the suction times per vacuum can vary if the tube length, arch of the tube, or the inner diameter of the tube changes, so be sure to calibrate the system once prior to allowing it to run automated
+// More information about the low-cost spectrophotometer, it's code and building instructions can be found here --> https://www.sciencedirect.com/science/article/pii/S246806722030016X
+//
+
+
+
+
+#include <math.h>
 #define CHANNELS    288
 #include <SoftwareSerial.h>
 #include <SPI.h>
