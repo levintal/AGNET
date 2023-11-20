@@ -488,9 +488,9 @@ stop=true;
     
 
     
-    // starts system loop at chosen time everyday
+    // starts system loop at chosen time everyday (if following option 2 of controlling the sampling frequency, this is the loop to be uncommented)
     //if( time.hour()==10 && time.minute()==30){
-    //if( time1.hour()==12 && time1.minute()==30){
+    
       
       
       //the run number increments every time the loop starts
